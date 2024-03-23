@@ -2,6 +2,12 @@
 # Changelog
 All notable changes to Mainsail will be documented in this file.
 
+## [2.9.2-swag](https://github.com/ballaswag/mainsail/releases/tag/v2.9.2-swag) (2024-03-23)
+
+### Features
+
+* path based router. ([1a1f8c0](https://github.com/ballaswag/mainsail/commit/d608ab5a8e66db94f392a720ef52403e9c8eb785))
+
 ## [2.9.1](https://github.com/mainsail-crew/mainsail/releases/tag/v2.9.1) - 2023-12-31
 ### Bug Fixes and Improvements
 
