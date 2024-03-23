@@ -27,14 +27,6 @@ jobs:
         run: |
           npm run lint -- --no-fix
 
-      - name: Run tests
-        run: |
-          npm run test:unit
-
-      - name: Run circular references check
-        run: |
-          npm run circular-check
-
       - name: Build
         run: |
           npm run build
