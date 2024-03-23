@@ -65,9 +65,10 @@ Vue.component('EChart', ECharts)
 Vue.use(VueResize)
 
 const initLoad = async () => {
+    const baseUrl = `${document.location.protocol}//${document.location.host}${document.location.pathname}`
     try {
         //load config.json
-        const res = await fetch('/config.json')
+        const res = await fetch(baseUrl + '/config.json')
         const file = (await res.json()) as Record<string, unknown>
 
         window.console.debug('Loaded config.json')
@@ -85,7 +86,15 @@ const initLoad = async () => {
         window.console.error(e)
     }
 
-    const url = store.getters['socket/getWebsocketUrl']
+    const socketUrl = new URL(baseUrl)
+    socketUrl.protocol = socketUrl.protocol === 'https:'
+        ? 'wss://'
+	: 'ws://'
+    socketUrl.pathname += socketUrl.pathname.endsWith('/')
+	? 'websocket'
+	: '/websocket'
+
+    const url = socketUrl.toString()
     Vue.use(WebSocketPlugin, { url, store })
     if (store?.state?.instancesDB === 'moonraker') Vue.$socket.connect()
 }

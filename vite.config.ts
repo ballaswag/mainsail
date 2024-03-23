@@ -21,17 +21,17 @@ const PWAConfig: Partial<VitePWAOptions> = {
         background_color: '#121212',
         icons: [
             {
-                src: '/img/icons/icon-192-maskable.png',
+                src: './img/icons/icon-192-maskable.png',
                 sizes: '192x192',
                 type: 'image/png',
             },
             {
-                src: '/img/icons/icon-512-maskable.png',
+                src: './img/icons/icon-512-maskable.png',
                 sizes: '512x512',
                 type: 'image/png',
             },
             {
-                src: '/img/icons/icon-512-maskable.png',
+                src: './img/icons/icon-512-maskable.png',
                 sizes: '512x512',
                 type: 'image/png',
                 purpose: 'any maskable',
@@ -111,6 +111,8 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+
+    base: './',
 
     server: {
         host: '0.0.0.0',
