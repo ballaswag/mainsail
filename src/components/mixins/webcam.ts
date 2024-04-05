@@ -15,13 +15,11 @@ import BaseMixin from '@/components/mixins/base'
 @Component
 export default class WebcamMixin extends Mixins(BaseMixin) {
     convertUrl(baseUrl: string, printerUrl: string | null) {
-        let url = new URL(baseUrl, this.hostUrl.toString())
+        const pathPrefix = document.location.pathname + baseUrl
+        let url = new URL(pathPrefix, this.hostUrl.toString())
 
         // use printerURL if it exists
-        if (printerUrl !== null) url = new URL(baseUrl, printerUrl)
-
-        // overwrite url to baseUrl, if it is an absolute URL
-        if (baseUrl.startsWith('http') || baseUrl.startsWith('://')) url = new URL(baseUrl)
+        if (printerUrl !== null) url = new URL(pathPrefix, printerUrl)
 
         if (baseUrl.startsWith('/webcam')) {
             const ports = [80]
@@ -29,6 +27,12 @@ export default class WebcamMixin extends Mixins(BaseMixin) {
             ports.push(this.$store.state.server.config?.config?.server?.ssl_port ?? 7130)
 
             if (!ports.includes(this.hostPort)) url.port = this.hostPort.toString()
+        }
+
+        // overwrite url to baseUrl, if it is an absolute URL
+        if (baseUrl.startsWith('http') || baseUrl.startsWith('://')
+            || baseUrl.startsWith('ws://') || baseUrl.startsWith('wss://')) {
+            url = new URL(baseUrl)
         }
 
         return decodeURIComponent(url.toString())
