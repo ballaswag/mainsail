@@ -2,6 +2,12 @@
 # Changelog
 All notable changes to Mainsail will be documented in this file.
 
+## [2.10.4-swag](https://github.com/ballaswag/mainsail/releases/tag/v2.10.4-swag) (2024-04-05)
+
+### Features
+
+* path based support for cameras (mjpeg/go2rtc). ([ace43e](https://github.com/ballaswag/mainsail/commit/ace43ee9d52e1b345df4bfe484d79ce60a7ecada))
+
 ## [2.10.1-swag](https://github.com/ballaswag/mainsail/releases/tag/v2.10.1-swag) (2024-03-23)
 
 ### Features
